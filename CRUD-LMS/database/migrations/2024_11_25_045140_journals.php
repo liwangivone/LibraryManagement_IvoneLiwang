@@ -11,7 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('journals', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->string('author');
+            $table->string('publisher');
+            $table->text('description');
+            $table->bigInteger('price')->default(0);
+            $table->integer('stock')->default(0);
+            $table->date('datePublished');
+            $table->smallInteger('volume');
+            $table->smallInteger('series');
+            $table->smallInteger('number');
+            $table->text('onlineLink');
+        });
     }
 
     /**
@@ -19,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('journals');
     }
 };
